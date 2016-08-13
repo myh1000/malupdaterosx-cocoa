@@ -3,11 +3,8 @@
 # MAL Updater OS X 2.2
 MAL Updater OS X is an open source OS X scrobbler that automatically detects what's playing and updates the user's MyAnimeList.
 
-<<<<<<< 02912615c95763884102e748a6574c07133e9bc3
-Now also with support for manga! (on reddit only)
+Now also with support for /r/manga.
 
-=======
->>>>>>> Update Readme.md
 XCode 7 or higher is required to build (Deployment Target is OS X 10.8)
 
 ## How to use
@@ -28,11 +25,11 @@ All the frameworks are included. Just build! Here are the frameworks that are us
 Copyright © 2009-2016, Atelier Shiori.
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
 3. Neither the name of the Atelier Shiori nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
