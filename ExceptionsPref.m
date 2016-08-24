@@ -76,9 +76,10 @@
         if ([self checkifexists:detectedtitle offset:0 correcttitle:[fsdialog getSelectedTitle]]) {
             // Exists, don't do anything
             return;
+            
         }
         // Add to Exceptions
-        [ExceptionsCache addtoExceptions:detectedtitle correcttitle:[fsdialog getSelectedTitle] aniid:[fsdialog getSelectedAniID] threshold:[fsdialog getSelectedTotalEpisodes] offset:0];
+        [ExceptionsCache addtoExceptions:detectedtitle correcttitle:[fsdialog getSelectedTitle] aniid:[fsdialog getSelectedAniID] threshold:[fsdialog getSelectedTotalEpisodes] offset:0 ismanga:[NSNumber numberWithBool:[fsdialog getisManga]]];
         //Check Cache
         [ExceptionsCache checkandRemovefromCache:detectedtitle];
     }
@@ -135,7 +136,7 @@
                 else{
                     threshold = 0;
                 }
-                [ExceptionsCache addtoExceptions:d[@"detectedtitle"] correcttitle:d[@"correcttitle"] aniid:d[@"showid"] threshold:threshold offset:doffset];
+                [ExceptionsCache addtoExceptions:d[@"detectedtitle"] correcttitle:d[@"correcttitle"] aniid:d[@"showid"] threshold:threshold offset:doffset ismanga:d[@"isManga"]];
                 //Check Cache
                 [ExceptionsCache checkandRemovefromCache:(NSString *)d[@"detectedtitle"]];
             }
