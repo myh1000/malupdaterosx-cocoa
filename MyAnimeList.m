@@ -336,6 +336,8 @@
                 // Total Episode check
                 NSNumber * totalepisodes = [cacheentry valueForKey:@"totalEpisodes"];
                 if ( [DetectedEpisode intValue] <= totalepisodes.intValue || totalepisodes.intValue == 0 ) {
+                    NSNumber * isManga = [cacheentry valueForKey:@"isManga"];
+                    DetectedTitleisManga = [isManga boolValue];
                     return [cacheentry valueForKey:@"id"];
                 }
             }

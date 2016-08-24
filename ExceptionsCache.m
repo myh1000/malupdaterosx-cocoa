@@ -51,8 +51,7 @@
         // Clear Core Data Objects from Memory
         [moc reset];
     }
-}
-+(void)addtoCache:(NSString *)title showid:(NSString *)showid actualtitle:(NSString *) atitle totalepisodes:(int)totalepisodes {
+}+(void)addtoCache:(NSString *)title showid:(NSString *)showid actualtitle:(NSString *) atitle totalepisodes:(int)totalepisodes {
     //Adds ID to cache
     MAL_Updater_OS_XAppDelegate * delegate = (MAL_Updater_OS_XAppDelegate *)[[NSApplication sharedApplication] delegate];
     NSManagedObjectContext *moc = [delegate getObjectContext];
@@ -65,6 +64,25 @@
     [obj setValue:showid forKey:@"id"];
     [obj setValue:atitle forKey:@"actualTitle"];
     [obj setValue:@(totalepisodes) forKey:@"totalEpisodes"];
+    NSError * error = nil;
+    // Save
+    [moc save:&error];
+    
+}
++(void)addtoCache:(NSString *)title showid:(NSString *)showid actualtitle:(NSString *) atitle totalepisodes:(int)totalepisodes ismanga:(NSNumber *)ismanga{
+    //Adds ID to cache
+    MAL_Updater_OS_XAppDelegate * delegate = (MAL_Updater_OS_XAppDelegate *)[[NSApplication sharedApplication] delegate];
+    NSManagedObjectContext *moc = [delegate getObjectContext];
+    // Add to Cache in Core Data
+    NSManagedObject *obj = [NSEntityDescription
+                            insertNewObjectForEntityForName :@"Cache"
+                            inManagedObjectContext: moc];
+    // Set values in the new record
+    [obj setValue:title forKey:@"detectedTitle"];
+    [obj setValue:showid forKey:@"id"];
+    [obj setValue:atitle forKey:@"actualTitle"];
+    [obj setValue:@(totalepisodes) forKey:@"totalEpisodes"];
+    [obj setValue:ismanga forKey:@"isManga"];
     NSError * error = nil;
     // Save
     [moc save:&error];

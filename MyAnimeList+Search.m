@@ -249,7 +249,7 @@
             episodes = (NSNumber *)found[@"episodes"];
         }
         //Save AniID
-        [ExceptionsCache addtoCache:DetectedTitle showid:titleid actualtitle:(NSString *)found[@"title"] totalepisodes:[episodes intValue]];
+        [ExceptionsCache addtoCache:DetectedTitle showid:titleid actualtitle:(NSString *)found[@"title"] totalepisodes:[episodes intValue] ismanga:[NSNumber numberWithBool:DetectedTitleisManga]];
     }
     //Return the AniID
     return titleid;
