@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0062C2C61E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0062C2C31E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodeld */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* MAL_Updater_OS_XAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* MAL_Updater_OS_XAppDelegate.m */; };
 		3A2DCCB61210B3BF00C920F1 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DCCB51210B3BF00C920F1 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -53,7 +54,6 @@
 		6F28DC161A67085800AF063F /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F28DC111A67085800AF063F /* MASShortcutView+UserDefaults.m */; };
 		6F28DC191A67087300AF063F /* HotKeyConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F28DC181A67087300AF063F /* HotKeyConstants.m */; };
 		6F28DC1B1A67092F00AF063F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F28DC1A1A67092F00AF063F /* Carbon.framework */; };
-		6F5F6C701A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F6C6D1A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodeld */; };
 		6FAA0C1F1A7E938400416079 /* ExceptionsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAA0C1E1A7E938400416079 /* ExceptionsCache.m */; };
 		6FBA5A081ABE460600B6DB79 /* AdvancedPrefController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBA5A061ABE460600B6DB79 /* AdvancedPrefController.m */; };
 		6FBA5A0A1ABE484B00B6DB79 /* AdvancedPrefController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBA5A0C1ABE484B00B6DB79 /* AdvancedPrefController.xib */; };
@@ -90,6 +90,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0062C2C41E15F336006A61E8 /* MAL_Updater_OS_X_DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MAL_Updater_OS_X_DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		0062C2C51E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAL_Updater_OS_X_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -168,8 +170,6 @@
 		6F28DC171A67087300AF063F /* HotKeyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeyConstants.h; sourceTree = "<group>"; };
 		6F28DC181A67087300AF063F /* HotKeyConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyConstants.m; sourceTree = "<group>"; };
 		6F28DC1A1A67092F00AF063F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		6F5F6C6E1A71696D006D4607 /* MAL_Updater_OS_X_DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MAL_Updater_OS_X_DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
-		6F5F6C6F1A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAL_Updater_OS_X_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		6FAA0C1D1A7E938400416079 /* ExceptionsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionsCache.h; sourceTree = "<group>"; };
 		6FAA0C1E1A7E938400416079 /* ExceptionsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionsCache.m; sourceTree = "<group>"; };
 		6FAA877D1A7EB22100EFFAC1 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6F5F6C6D1A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodeld */,
+				0062C2C31E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodeld */,
 				256AC3F00F4B6AF500CF3369 /* MAL_Updater_OS_X_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -506,7 +506,6 @@
 				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
-						DevelopmentTeam = 9HDZTER525;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -594,11 +593,11 @@
 				6F12909B1A7D833100B8C3E6 /* AutoExceptions.m in Sources */,
 				6F28DC121A67085800AF063F /* MASShortcut.m in Sources */,
 				6FD961411B419E3F00DE539C /* MALScripting.m in Sources */,
-				6F5F6C701A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodeld in Sources */,
 				5967C9341C95AD51005FCBC7 /* string_score.c in Sources */,
 				5C881EFB19F462B400E20425 /* NSString_stripHtml.m in Sources */,
 				829727981A8BB14E004F73AB /* MyAnimeList+Update.m in Sources */,
 				5C950B5A1A295683001BFBDD /* EasyNSURLConnection.m in Sources */,
+				0062C2C61E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodeld in Sources */,
 				6F1865931A7D79CB00C74A47 /* Detection.m in Sources */,
 				59D99C071CBEDB0000762EA5 /* MyAnimeList+HummingbirdSearch.m in Sources */,
 				5C07DA671A8156420003A827 /* HistoryWindow.m in Sources */,
@@ -853,13 +852,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6F5F6C6D1A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodeld */ = {
+		0062C2C31E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6F5F6C6E1A71696D006D4607 /* MAL_Updater_OS_X_DataModel 2.xcdatamodel */,
-				6F5F6C6F1A71696D006D4607 /* MAL_Updater_OS_X_DataModel.xcdatamodel */,
+				0062C2C41E15F336006A61E8 /* MAL_Updater_OS_X_DataModel 2.xcdatamodel */,
+				0062C2C51E15F336006A61E8 /* MAL_Updater_OS_X_DataModel.xcdatamodel */,
 			);
-			currentVersion = 6F5F6C6E1A71696D006D4607 /* MAL_Updater_OS_X_DataModel 2.xcdatamodel */;
+			currentVersion = 0062C2C41E15F336006A61E8 /* MAL_Updater_OS_X_DataModel 2.xcdatamodel */;
 			path = MAL_Updater_OS_X_DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -12,23 +12,6 @@
 #import "MAL_Updater_OS_XAppDelegate.h"
 
 @implementation ExceptionsCache
-//+(void)addtoExceptions:(NSString *)detectedtitle correcttitle:(NSString *)title aniid:(NSString *)showid threshold:(int)threshold offset:(int)offset{
-//    MAL_Updater_OS_XAppDelegate * delegate = (MAL_Updater_OS_XAppDelegate *)[[NSApplication sharedApplication] delegate];
-//    NSManagedObjectContext *moc = [delegate getObjectContext];
-//    NSError * error = nil;
-//    // Add to Cache in Core Data
-//    NSManagedObject *obj = [NSEntityDescription
-//                            insertNewObjectForEntityForName:@"Exceptions"
-//                            inManagedObjectContext: moc];
-//    // Set values in the new record
-//    [obj setValue:detectedtitle forKey:@"detectedTitle"];
-//    [obj setValue:title forKey:@"correctTitle"];
-//    [obj setValue:showid forKey:@"id"];
-//    [obj setValue:@(threshold) forKey:@"episodethreshold"];
-//    [obj setValue:@(offset) forKey:@"episodeOffset"];
-//    //Save
-//    [moc save:&error];
-//}
 +(void)addtoExceptions:(NSString *)detectedtitle correcttitle:(NSString *)title aniid:(NSString *)showid threshold:(int)threshold offset:(int)offset ismanga:(NSNumber *)ismanga{
     MAL_Updater_OS_XAppDelegate * delegate = (MAL_Updater_OS_XAppDelegate *)[[NSApplication sharedApplication] delegate];
     NSManagedObjectContext *moc = [delegate getObjectContext];
