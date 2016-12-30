@@ -158,9 +158,6 @@
 -(int)getSelectedTotalEpisodes{
     return selectedtotalepisodes;
 }
--(BOOL)getisManga {
-    return DetectedTitleisManga;
-}
 -(bool)getdeleteTitleonCorrection{
     return (bool) [deleteoncorrection state];
 }

@@ -118,7 +118,6 @@
     }
     DetectedTitle = showtitle;
     DetectedEpisode = episode;
-    DetectedGroup = (DetectedTitleisManga ? @"manga" : @"");
     if (FailedSource == nil) {
         DetectedSource = LastScrobbledSource;
     }
@@ -337,8 +336,6 @@
                 // Total Episode check
                 NSNumber * totalepisodes = [cacheentry valueForKey:@"totalEpisodes"];
                 if ( [DetectedEpisode intValue] <= totalepisodes.intValue || totalepisodes.intValue == 0 ) {
-                    NSNumber * isManga = [cacheentry valueForKey:@"isManga"];
-                    DetectedTitleisManga = [isManga boolValue];
                     return [cacheentry valueForKey:@"id"];
                 }
             }
@@ -376,7 +373,6 @@
                     // Set Correct Title and Episode offset (if any)
                     int threshold = [(NSNumber *)[entry valueForKey:@"episodethreshold"] intValue];
                     int offset = [(NSNumber *)[entry valueForKey:@"episodeOffset"] intValue];
-                    NSNumber * isManga = [entry valueForKey:@"isManga"];
                     int tmpepisode = [DetectedEpisode intValue] - offset;
                     if ((tmpepisode > threshold && threshold != 0) || (tmpepisode <= 0 && threshold != 1 && i==0)||(tmpepisode <= 0 && i==1)) {
                         continue;
@@ -388,7 +384,6 @@
                             DetectedEpisode = [NSString stringWithFormat:@"%i", tmpepisode];
                         }
                         DetectedSeason = 0;
-                        DetectedTitleisManga = [isManga boolValue];
                         DetectedTitleisEpisodeZero = false;
                         found = true;
 						break;

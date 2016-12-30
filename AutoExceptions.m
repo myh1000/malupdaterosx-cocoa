@@ -35,7 +35,6 @@
             if (!exists) {
                 NSString * correcttitle = (NSString *)d[@"correcttitle"];
                 NSString * showid = (NSString *)d[@"showid"];
-                NSNumber * isManga = (NSNumber *)d[@"isManga"];
                 // Add Exceptions to Core Data
                 NSManagedObject *obj = [NSEntityDescription
                                         insertNewObjectForEntityForName:@"Exceptions"
@@ -44,7 +43,6 @@
                 [obj setValue:title forKey:@"detectedTitle"];
                 [obj setValue:correcttitle forKey:@"correctTitle"];
                 [obj setValue:showid forKey:@"id"];
-                [obj setValue:isManga forKey:@"isManga"];
                 [obj setValue:@0 forKey:@"episodeOffset"];
                 [obj setValue:@0 forKey:@"episodethreshold"];
             }

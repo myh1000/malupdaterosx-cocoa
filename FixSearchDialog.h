@@ -28,7 +28,6 @@
 -(NSString *)getSelectedTitle;
 -(NSString *)getSelectedAniID;
 -(int)getSelectedTotalEpisodes;
--(BOOL)getisManga;
 -(bool)getdeleteTitleonCorrection;
 -(bool)getcorrectonce;
 -(void)setSearchField:(NSString *)term;
