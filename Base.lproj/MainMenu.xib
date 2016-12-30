@@ -310,6 +310,7 @@
                 <outlet property="showstatus" destination="742" id="785"/>
                 <outlet property="showtitle" destination="746" id="788"/>
                 <outlet property="statusMenu" destination="543" id="561"/>
+                <outlet property="statustype" destination="IeR-th-f8f" id="Kmq-b9-iz9"/>
                 <outlet property="togglescrobbler" destination="557" id="657"/>
                 <outlet property="updatecorrect" destination="tvQ-no-ADg" id="2as-pe-Cs1"/>
                 <outlet property="updatecorrectmenu" destination="xQ0-Wd-k7I" id="Yaa-0e-3Dm"/>
@@ -346,7 +347,7 @@
             <rect key="contentRect" x="196" y="392" width="350" height="147"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="739">
-                <rect key="frame" x="0.0" y="-5" width="350" height="147"/>
+                <rect key="frame" x="0.0" y="0.0" width="350" height="147"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="745">
@@ -367,24 +368,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" id="744">
-                        <rect key="frame" x="122" y="70" width="143" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="0 - No Score" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="762" id="758">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" title="OtherViews" id="759">
-                                <items>
-                                    <menuItem title="0 - No Score" state="on" id="762"/>
-                                    <menuItem title="Item 2" id="761"/>
-                                    <menuItem title="Item 3" id="760"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <outlet property="menu" destination="726" id="775"/>
-                        </connections>
-                    </popUpButton>
                     <textField verticalHuggingPriority="750" id="743">
                         <rect key="frame" x="8" y="102" width="109" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -461,6 +444,24 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <popUpButton verticalHuggingPriority="750" id="744">
+                        <rect key="frame" x="122" y="69" width="143" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="0 - No Score" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="762" id="758">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" title="OtherViews" id="759">
+                                <items>
+                                    <menuItem title="0 - No Score" state="on" id="762"/>
+                                    <menuItem title="Item 2" id="761"/>
+                                    <menuItem title="Item 3" id="760"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <outlet property="menu" destination="726" id="775"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
             <point key="canvasLocation" x="296" y="495.5"/>
@@ -536,17 +537,17 @@ Gw
                                 <rect key="frame" x="154" y="0.0" width="286" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ypk-hd-jNn">
-                                    <rect key="frame" x="1" y="1" width="269" height="188"/>
+                                    <rect key="frame" x="1" y="1" width="284" height="188"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="bGm-dl-hOF">
                                             <rect key="frame" x="0.0" y="0.0" width="284" height="188"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="269" height="188"/>
+                                            <size key="minSize" width="284" height="188"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="269" height="188"/>
+                                            <size key="minSize" width="284" height="188"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                         </textView>
                                     </subviews>

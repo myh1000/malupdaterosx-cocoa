@@ -33,7 +33,6 @@
         }
         NSError* jerror;
         NSDictionary *animeinfo = [NSJSONSerialization JSONObjectWithData:[request getResponseData] options:nil error:&jerror];
-        NSLog(@"%@", animeinfo);
         if (animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]] == [NSNull null]) { // To prevent the scrobbler from failing because there is no episode total.
             TotalEpisodes = 0; // No Episode Total, Set to 0.
         }

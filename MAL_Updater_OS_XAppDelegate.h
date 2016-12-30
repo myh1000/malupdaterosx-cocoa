@@ -60,7 +60,8 @@
     IBOutlet NSToolbarItem * openAnimePage;
 	IBOutlet NSTextField * showtitle;
 	IBOutlet NSPopUpButton * showstatus;
-	IBOutlet NSPopUpButton * showscore;
+    IBOutlet NSPopUpButton * showscore;
+    IBOutlet NSTextField * statustype;
     IBOutlet NSTextField * episodefield;
     IBOutlet NSNumberFormatter * epiformatter;
 	NSWindowController *_preferencesWindowController;

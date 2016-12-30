@@ -771,7 +771,7 @@
 -(void)setStatusMenuTitleEpisode:(NSString *)title episode:(NSString *) episode{
     //Set New Title and Episode
     [updatedtitle setTitle:title];
-    [updatedepisode setTitle:[NSString stringWithFormat:@"Episode %@", episode]];
+    [updatedepisode setTitle:[NSString stringWithFormat:@"%@ %@", [MALEngine getisManga] ? @"Chapter" : @"Episode", episode]];
 }
 -(void)updateLastScrobbledTitleStatus:(BOOL)pending{
     if (pending) {
@@ -783,7 +783,7 @@
     else{
         [updatecorrect setAutoenablesItems:YES];
         [lastupdateheader setTitle:@"Last Scrobbled:"];
-        [self setLastScrobbledTitle:[NSString stringWithFormat:@"Last Scrobbled: %@ - Episode %@ playing from %@",[MALEngine getLastScrobbledTitle],[MALEngine getLastScrobbledEpisode], [MALEngine getLastScrobbledSource]]];
+        [self setLastScrobbledTitle:[NSString stringWithFormat:@"Last Scrobbled: %@ - %@ %@ playing from %@",[MALEngine getLastScrobbledTitle], [MALEngine getisManga] ? @"Chapter" : @"Episode",[MALEngine getLastScrobbledEpisode], [MALEngine getLastScrobbledSource]]];
         [self setStatusToolTip:[NSString stringWithFormat:@"MAL Updater OS X - %@ - %@",[MALEngine getLastScrobbledActualTitle],[MALEngine getLastScrobbledEpisode]]];
     }
 }
@@ -819,6 +819,7 @@
 	[showtitle setObjectValue:[MALEngine getLastScrobbledTitle]];
 	[showscore selectItemWithTag:[MALEngine getScore]];
 	[showstatus selectItemAtIndex:[MALEngine getWatchStatus]];
+    [statustype setStringValue:[NSString stringWithFormat:@"%@", [MALEngine getisManga] ? @"Chapter:" : @"Episode:"]];
     [episodefield setStringValue:[NSString stringWithFormat:@"%i", [MALEngine getCurrentEpisode]]];
     if ([MALEngine getTotalEpisodes] !=0) {
         [epiformatter setMaximum:@([MALEngine getTotalEpisodes])];
