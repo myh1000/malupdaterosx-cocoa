@@ -14,7 +14,7 @@
 -(BOOL)checkstatus:(NSString *)titleid {
     NSLog(@"Checking Status");
     //Set Search API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/anime/%@?mine=1",MALApiUrl, titleid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/%@/%@?mine=1",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
@@ -33,14 +33,15 @@
         }
         NSError* jerror;
         NSDictionary *animeinfo = [NSJSONSerialization JSONObjectWithData:[request getResponseData] options:nil error:&jerror];
-        if (animeinfo[@"episodes"] == [NSNull null]) { // To prevent the scrobbler from failing because there is no episode total.
+        NSLog(@"%@", animeinfo);
+        if (animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]] == [NSNull null]) { // To prevent the scrobbler from failing because there is no episode total.
             TotalEpisodes = 0; // No Episode Total, Set to 0.
         }
         else { // Episode Total Exists
-            TotalEpisodes = [(NSNumber *)animeinfo[@"episodes"] intValue];
+            TotalEpisodes = [(NSNumber *)animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]] intValue];
         }
         // Watch Status
-        if (animeinfo[@"watched_status"] == [NSNull null]) {
+        if (animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"read_status" : @"watched_status")]] == [NSNull null]) {
             NSLog(@"Not on List");
             LastScrobbledTitleNew = true;
             DetectedCurrentEpisode = 0;
@@ -49,8 +50,8 @@
         else {
             NSLog(@"Title on List");
             LastScrobbledTitleNew = false;
-            WatchStatus = animeinfo[@"watched_status"];
-            DetectedCurrentEpisode = [(NSNumber *)animeinfo[@"watched_episodes"] intValue];
+            WatchStatus = animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"read_status" : @"watched_status")]];
+            DetectedCurrentEpisode = [(NSNumber *)animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters_read" : @"watched_episodes")]] intValue];
             if (animeinfo[@"score"] == [NSNull null]){
                 // Score is null, set to 0
                 TitleScore = 0;
@@ -109,14 +110,14 @@
     else {
         // Update the title
         //Set library/scrobble API
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/animelist/anime/%@", MALApiUrl, titleid]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/%@", MALApiUrl, (DetectedTitleisManga ? @"mangalist/manga" : @"animelist/anime"), titleid]];
         EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
         //Ignore Cookies
         [request setUseCookies:NO];
         //Set Token
                 [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
         [request setPostMethod:@"PUT"];
-        [request addFormData:DetectedEpisode forKey:@"episodes"];
+        [request addFormData:DetectedEpisode forKey:[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]];
         //Set Status
         if([DetectedEpisode intValue] == TotalEpisodes) {
             //Set Title State for Title (use for Twitter feature)
@@ -126,7 +127,7 @@
         }
         else {
             //Set Title State for Title (use for Twitter feature)
-            WatchStatus = @"watching";
+            WatchStatus = [NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"reading" : @"watching")];
             // Still Watching
             [request addFormData:WatchStatus forKey:@"status"];
         }
@@ -165,14 +166,15 @@
     }
     // Add the title
     //Set library/scrobble API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/animelist/anime", MALApiUrl]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@", MALApiUrl, (DetectedTitleisManga ? @"mangalist/manga" : @"animelist/anime")]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
     //Set Token
             [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
-    [request addFormData:titleid forKey:@"anime_id"];
-    [request addFormData:DetectedEpisode forKey:@"episodes"];
+    [request addFormData:titleid forKey:[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"manga_id" : @"anime_id")]];
+
+    [request addFormData:DetectedEpisode forKey:[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]];
     // Check if the detected episode is equal to total episodes. If so, set it as complete (mostly for specials and movies)
     if([DetectedEpisode intValue] == TotalEpisodes) {
         //Set Title State for Title (use for Twitter feature)
@@ -182,7 +184,7 @@
     }
     else {
         //Set Title State for Title (use for Twitter feature)
-        WatchStatus = @"watching";
+        WatchStatus = [NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"reading" : @"watching")];
         // Still Watching
         [request addFormData:WatchStatus forKey:@"status"];
     }
@@ -191,7 +193,7 @@
     
     
     //Set Title State for Title
-    WatchStatus = @"watching";
+    WatchStatus = [NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"reading" : @"watching")];
     switch ([request getStatusCode]) {
         case 200:
         case 201:
@@ -218,7 +220,7 @@
     
     // Update the title
     //Set library/scrobble API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/animelist/anime/%@", MALApiUrl, titleid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/%@", MALApiUrl, (DetectedTitleisManga ? @"mangalist/manga" : @"animelist/anime"), titleid]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
@@ -246,7 +248,7 @@
     NSLog(@"Updating Status for %@", titleid);
     // Update the title
     //Set library/scrobble API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/animelist/anime/%@", MALApiUrl, titleid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/%@", MALApiUrl, (DetectedTitleisManga ? @"mangalist/manga" : @"animelist/anime"), titleid]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
@@ -254,7 +256,7 @@
             [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
     [request setPostMethod:@"PUT"];
     //Set current episode
-    [request addFormData:episode forKey:@"episodes"];
+    [request addFormData:episode forKey:[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]];
     //Set new watch status
     [request addFormData:showwatchstatus forKey:@"status"];
     //Set new score.

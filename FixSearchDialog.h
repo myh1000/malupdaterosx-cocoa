@@ -21,9 +21,11 @@
     NSString * searchquery;
     bool correction;
     bool allowdelete;
+    BOOL DetectedTitleisManga;
 }
 -(id)init;
 -(void)setCorrection:(BOOL)correct;
+-(void)setIsManga:(BOOL)isManga;
 -(void)setAllowDelete:(BOOL)deleteallowed;
 -(NSString *)getSelectedTitle;
 -(NSString *)getSelectedAniID;

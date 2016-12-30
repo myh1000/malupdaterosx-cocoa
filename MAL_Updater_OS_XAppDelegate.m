@@ -363,6 +363,10 @@
     //Show Help
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/chikorita157/malupdaterosx-cocoa/wiki/Getting-Started"]];
 }
+-(IBAction)openMAL:(id)sender{
+    //Show Help
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://myanimelist.net/profile/%@", [MALEngine getusername]]]];
+}
 -(IBAction)showAboutWindow:(id)sender{
     // Properly show the about window in a menu item application
     [NSApp activateIgnoringOtherApps:YES];
@@ -611,6 +615,7 @@
         [self stoptimer];
     }
     fsdialog = [FixSearchDialog new];
+    [fsdialog setIsManga:[MALEngine getisManga]];
     // Check if Confirm is on for new title. If so, then disable ability to delete title.
     if ((!confirmupdate.hidden && [MALEngine getisNewTitle]) || !findtitle.hidden){
         [fsdialog setCorrection:YES];
@@ -1019,7 +1024,7 @@
     [shareIcon setTitle:@""];
     [shareMenu addItem:shareIcon];
     //Generate Items to Share
-    shareItems = @[[NSString stringWithFormat:@"%@ - %@", [MALEngine getLastScrobbledTitle], [MALEngine getLastScrobbledEpisode] ], [NSURL URLWithString:[NSString stringWithFormat:@"http://myanimelist.net/anime/%@", [MALEngine getAniID]]]];
+    shareItems = @[[NSString stringWithFormat:@"%@ - %@", [MALEngine getLastScrobbledTitle], [MALEngine getLastScrobbledEpisode] ], [NSURL URLWithString:[NSString stringWithFormat:@"http://myanimelist.net/%@/%@", ([MALEngine getisManga] ? @"manga" : @"anime"), [MALEngine getAniID]]]];
     //Get Share Services for Items
     NSArray *shareServiceforItems = [NSSharingService sharingServicesForItems:shareItems];
     //Generate Share Items and populate Share Menu
@@ -1037,6 +1042,6 @@
 }
 -(IBAction)showLastScrobbledInformation:(id)sender{
     //Open the anime's page on MyAnimeList in the default web browser
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://myanimelist.net/anime/%@", [MALEngine getAniID]]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://myanimelist.net/%@/%@", ([MALEngine getisManga] ? @"manga" : @"anime"), [MALEngine getAniID]]]];
 }
 @end

@@ -10,7 +10,6 @@
 #import "EasyNSURLConnection.h"
 #import "Utility.h"
 #import "ExceptionsCache.h"
-#import "Recognition.h"
 
 @implementation MyAnimeList (Search)
 -(NSString *)searchanime{
@@ -45,7 +44,7 @@
     NSString * searchterm = [Utility urlEncodeString:searchtitle];
     
     //Set Search API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/anime/search?q=%@",MALApiUrl, searchterm]];
+     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/search?q=%@",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), searchterm]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
@@ -90,7 +89,10 @@
         DetectedTitleisMovie = false;
     }
     // Create a filtered Arrays
+
+    NSLog(@"%@", searchdata);
     NSArray * sortedArray = [self filterArray:searchdata];
+    NSLog(@"%@", sortedArray);
     searchdata = nil;
     // Used for String Comparison
     NSDictionary * titlematch1;
@@ -229,6 +231,7 @@
         else{
             sortedArray = [NSMutableArray arrayWithArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(type == %@)", @"TV"]]];
             [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(type == %@)", @"ONA"]]];
+            [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(type == %@)", @"Manga"]]];
             if (DetectedSeason == 1 | DetectedSeason == 0) {
                 [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(type == %@)", @"Special"]]];
                 [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(type == %@)", @"OVA"]]];
@@ -259,8 +262,6 @@
     // Perform string score between two titles to see if one is the correct match or not
     float score1, score2, ascore1, ascore2;
     double fuzziness = 0.3;
-    int season1 = ((NSNumber *)[[Recognition alloc] recognize:match1[@"title"]][@"season"]).intValue;
-    int season2 = ((NSNumber *)[[Recognition alloc] recognize:match2[@"title"]][@"season"]).intValue;
     //Score first title
     score1 = string_fuzzy_score(title.UTF8String, [[NSString stringWithFormat:@"%@", match1[@"title"]] UTF8String], fuzziness);
     ascore1 = string_fuzzy_score(title.UTF8String, [[NSString stringWithFormat:@"%@", [self generateAltTitles:match1[@"other_titles"]] ] UTF8String], fuzziness);
@@ -271,7 +272,7 @@
     NSLog(@"%@ score - %f", match2[@"title"], score2);
     NSLog(@"%@ ascore - %f", match1[@"title"], ascore1);
     NSLog(@"%@ ascore - %f", match2[@"title"], ascore2);
-
+    
     //First Season Score Bonus
     if (DetectedSeason == 0 || DetectedSeason == 1) {
         if ([(NSString *)match1[@"title"] rangeOfString:@"First"].location != NSNotFound || [(NSString *)match1[@"title"] rangeOfString:@"1st"].location != NSNotFound) {
@@ -283,37 +284,22 @@
             ascore2 = ascore2 + .25;
         }
     }
-    //Season Scoring Calculation
-    if ( season1 != DetectedSeason){
-        ascore1 = ascore1 - .5;
-        score1 = score1 - .5;
-    }
-    if ( season2 != DetectedSeason){
-        ascore2 = ascore2 - .5;
-        score2 = score2 - .5;
-    }
-    
-    // Take the highest of both matches scores
-    float finalscore1;
-    float finalscore2;
-    if(score1 > ascore1){
-        finalscore1 = score1;
-    }
-    else{
-        finalscore1 = ascore1;
-    }
-    if(score2 > ascore2){
-        finalscore2 = score2;
-    }
-    else{
-        finalscore2 = ascore2;
-    }
-    // Compare Scores
-    if (finalscore1 == finalscore2 || finalscore1 == INFINITY) {
+    if (score1 == score2 || (ascore1 == ascore2 && !(ascore1 == 0 && ascore2 == 0)) || score1 == INFINITY) {
         //Scores can't be reliably compared, just return the first match
         return [self foundtitle:[NSString stringWithFormat:@"%@",match1[@"id"]] info:match1];
     }
-    else if(finalscore1 > finalscore2)
+    else if(a == 2 || b == 2){
+        if(ascore1 > ascore2)
+        {
+            //Return first title as it has a higher score
+            return [self foundtitle:[NSString stringWithFormat:@"%@",match1[@"id"]] info:match1];
+        }
+        else{
+            // Return second title since it has a higher score
+            return [self foundtitle:[NSString stringWithFormat:@"%@",match2[@"id"]] info:match2];
+        }
+    }
+    else if(score1 > score2)
     {
         //Return first title as it has a higher score
         return [self foundtitle:[NSString stringWithFormat:@"%@",match1[@"id"]] info:match1];

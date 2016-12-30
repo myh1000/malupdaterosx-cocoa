@@ -83,7 +83,7 @@
         dispatch_async(queue, ^{
         NSString * searchterm = [Utility urlEncodeString:[search stringValue]];
         //Set Search API
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/anime/search?q=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"MALAPIURL"], searchterm]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/%@/search?q=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"MALAPIURL"], (DetectedTitleisManga ? @"manga" : @"anime"), searchterm]];
         EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
         //Ignore Cookies
         [request setUseCookies:NO];
@@ -142,6 +142,9 @@
 }
 -(void)setCorrection:(BOOL)correct{
     correction = correct;
+}
+-(void)setIsManga:(BOOL)isManga{
+    DetectedTitleisManga = isManga;
 }
 -(void)setAllowDelete:(BOOL)deleteallowed{
     allowdelete = deleteallowed;

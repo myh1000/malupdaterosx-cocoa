@@ -28,6 +28,7 @@
     NSString * FailedSource;
     BOOL DetectedTitleisMovie;
     BOOL DetectedTitleisEpisodeZero;
+    BOOL DetectedTitleisManga;
     int DetectedSeason;
 	int DetectedCurrentEpisode;
 	int TotalEpisodes;
@@ -61,6 +62,7 @@
 -(int)getWatchStatus;
 -(BOOL)getSuccess;
 -(BOOL)getisNewTitle;
+-(BOOL)getisManga;
 -(NSDictionary *)getLastScrobbledInfo;
 -(void)clearAnimeInfo;
 -(NSString *)startSearch;

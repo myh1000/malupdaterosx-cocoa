@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1108" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -36,8 +36,8 @@
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Anime Title Exceptions" identifier="1" id="dDU-b1-Ua0">
-                            <view key="view" id="mi1-sZ-x1p">
-                                <rect key="frame" x="10" y="33" width="174" height="0.0"/>
+                            <view key="view" ambiguous="YES" id="mi1-sZ-x1p">
+                                <rect key="frame" x="10" y="33" width="189" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button toolTip="Removes title from exception list." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2FI-VL-IAQ">
@@ -183,11 +183,11 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1Ga-OA-HBD">
-                                            <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
+                                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Lp6-QF-eWj">
-                                            <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
+                                            <rect key="frame" x="-15" y="23" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" focusRingType="none" id="nAC-LU-93c">
@@ -266,7 +266,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="JTq-QJ-fB0">
-                                            <rect key="frame" x="1" y="-14" width="0.0" height="15"/>
+                                            <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="AlK-1m-c1v">
@@ -299,7 +299,7 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Title Ignore" identifier="" id="RJZ-6G-zST">
-                            <view key="view" ambiguous="YES" id="aDo-4b-5DM">
+                            <view key="view" id="aDo-4b-5DM">
                                 <rect key="frame" x="10" y="33" width="589" height="221"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -401,7 +401,7 @@
                                                                         <menuItem title="Movist" id="ck1-wU-kgL">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                                         </menuItem>
-                                                                        <menuItem title="Squire" state="on" id="uuI-s3-pMX">
+                                                                        <menuItem title="Squire" id="uuI-s3-pMX">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                                         </menuItem>
                                                                         <menuItem isSeparatorItem="YES" id="zeX-r5-Ux4"/>
@@ -449,11 +449,11 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="yAB-lX-3EG">
-                                            <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
+                                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="qqs-n7-ngN">
-                                            <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
+                                            <rect key="frame" x="-15" y="23" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="Y7w-8K-yca">

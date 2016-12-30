@@ -72,6 +72,9 @@
 -(BOOL)getisNewTitle{
     return LastScrobbledTitleNew;
 }
+-(BOOL)getisManga{
+    return DetectedTitleisManga;
+}
 -(int)getWatchStatus
 {
 	if ([WatchStatus isEqualToString:@"watching"])
@@ -103,7 +106,7 @@
     int detectstatus;
 	//Set up Delegate
 	
-    detectstatus = [self detectmedia];
+    detectstatus = [self detectmedia];  
 	if (detectstatus == 2) { // Detects Title
         return [self scrobble];
 	}
@@ -244,6 +247,8 @@
         DetectedSeason = [(NSNumber *)result[@"detectedseason"] intValue];
         DetectedGroup = result[@"group"];
         DetectedSource = result[@"detectedsource"];
+        NSLog(@"%@",DetectedGroup);
+        DetectedTitleisManga = [DetectedGroup isEqualToString:@"manga"];
         if ([(NSArray *)result[@"types"] count] > 0) {
             DetectedType = [result[@"types"] objectAtIndex:0];
         }
@@ -336,6 +341,7 @@
                 NSLog(@"%@ is found in cache.", title);
                 // Total Episode check
                 NSNumber * totalepisodes = [cacheentry valueForKey:@"totalEpisodes"];
+                NSLog(@"%@", totalepisodes);
                 if ( [DetectedEpisode intValue] <= totalepisodes.intValue || totalepisodes.intValue == 0 ) {
                     NSNumber * isManga = [cacheentry valueForKey:@"isManga"];
                     DetectedTitleisManga = [isManga boolValue];
