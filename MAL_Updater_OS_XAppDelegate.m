@@ -513,7 +513,7 @@
             case 3:{
                 [self setStatusText:@"Scrobble Status: Please confirm update."];
                 NSDictionary * userinfo = @{@"title": [MALEngine getLastScrobbledTitle],  @"episode": [MALEngine getLastScrobbledEpisode]};
-                [self showConfirmationNotification:@"Confirm Update" message:[NSString stringWithFormat:@"Click here to confirm update for %@ Episode %@.",[MALEngine getLastScrobbledActualTitle],[MALEngine getLastScrobbledEpisode]] updateData:userinfo];
+                [self showConfirmationNotification:@"Confirm Update" message:[NSString stringWithFormat:@"Click here to confirm update for %@ %@ %@.",[MALEngine getLastScrobbledActualTitle],[MALEngine getisManga] ? @"Chapter" : @"Episode",[MALEngine getLastScrobbledEpisode]] updateData:userinfo];
                 break;
             }
             case 21:
@@ -777,7 +777,7 @@
     if (pending) {
         [updatecorrect setAutoenablesItems:NO];
         [lastupdateheader setTitle:@"Pending:"];
-        [self setLastScrobbledTitle:[NSString stringWithFormat:@"Pending: %@ - Episode %@ playing from %@",[MALEngine getLastScrobbledTitle],[MALEngine getLastScrobbledEpisode], [MALEngine getLastScrobbledSource]]];
+        [self setLastScrobbledTitle:[NSString stringWithFormat:@"Pending: %@ - %@ %@ playing from %@",[MALEngine getLastScrobbledTitle],[MALEngine getisManga] ? @"Chapter" : @"Episode",[MALEngine getLastScrobbledEpisode], [MALEngine getLastScrobbledSource]]];
         [self setStatusToolTip:[NSString stringWithFormat:@"MAL Updater OS X - %@ - %@ (Pending)",[MALEngine getLastScrobbledActualTitle],[MALEngine getLastScrobbledEpisode]]];
     }
     else{
@@ -921,7 +921,7 @@
         [HistoryWindow addrecord:[MALEngine getLastScrobbledActualTitle] Episode:[MALEngine getLastScrobbledEpisode] Date:[NSDate date]];
         [confirmupdate setHidden:YES];
         [self setStatusText:@"Scrobble Status: Update was successful."];
-        [self showNotification:@"MAL Updater OS X" message:[NSString stringWithFormat:@"%@ Episode %@ has been updated.",[MALEngine getLastScrobbledActualTitle],[MALEngine getLastScrobbledEpisode]]];
+        [self showNotification:@"MAL Updater OS X" message:[NSString stringWithFormat:@"%@ %@ %@ has been updated.",[MALEngine getLastScrobbledActualTitle],[MALEngine getisManga] ? @"Chapter" : @"Episode", [MALEngine getLastScrobbledEpisode]]];
         if ([MALEngine getisNewTitle]) {
             // Enable Update Status functions for new and unconfirmed titles.
             [self EnableStatusUpdating:YES];
