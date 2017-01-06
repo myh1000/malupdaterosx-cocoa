@@ -14,7 +14,7 @@
 -(BOOL)checkstatus:(NSString *)titleid {
     NSLog(@"Checking Status");
     //Set Search API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/%@/%@?mine=1",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/%@",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
@@ -25,6 +25,7 @@
     // Get Status Code
     int statusCode = [request getStatusCode];
     NSError * error = [request getError]; // Error Detection
+    NSLog(@"%@", [request getResponseDataString]);
     if (statusCode == 200 ) {
         online = true;
         if (DetectedEpisode.length == 0) { // Check if there is a DetectedEpisode (needed for checking

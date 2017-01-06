@@ -3,6 +3,7 @@ build/**
 
 TwitterOAuthKeys.m
 
+MAL Updater OS X.xcodeproj/xcuserdata/*
 MAL Updater OS X.xcodeproj/project.xcworkspace/xcuserdata/**
 .DS_Store
 Frameworks/.DS_Store
