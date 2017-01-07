@@ -14,7 +14,7 @@
 -(BOOL)checkstatus:(NSString *)titleid {
     NSLog(@"Checking Status");
     //Set Search API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/%@",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/%@/%@?mine=1",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
