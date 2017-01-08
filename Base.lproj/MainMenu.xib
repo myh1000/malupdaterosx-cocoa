@@ -200,6 +200,12 @@
                 <menuItem title="Episode" hidden="YES" enabled="NO" indentationLevel="1" id="tL9-L5-eca">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
+                <menuItem title="Open Last Scrobbled" hidden="YES" id="qkI-06-6f4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showLastScrobbledInformation:" target="560" id="jvZ-lT-MEg"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" hidden="YES" id="ZEo-hm-rcH">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
@@ -258,16 +264,16 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="574"/>
+                <menuItem title="Open MyAnimeList" id="btE-yY-cy5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openMAL:" target="560" id="PjH-qZ-mZa"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Show/Hide Status Window" id="573">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="togglescrobblewindow:" target="560" id="575"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Open MyAnimeList" id="qkI-06-6f4">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="openMAL:" target="560" id="UvK-44-fFH"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Scrobble History" id="590">
@@ -306,6 +312,7 @@
                 <outlet property="shareMenu" destination="ltR-rE-E7c" id="k8c-iR-Onz"/>
                 <outlet property="shareMenuItem" destination="4x0-G3-pYv" id="RFZ-gE-DzM"/>
                 <outlet property="sharetoolbaritem" destination="vKI-CB-Acb" id="o8P-m2-Etr"/>
+                <outlet property="showlastscrobbled" destination="qkI-06-6f4" id="jmM-jA-DFh"/>
                 <outlet property="showscore" destination="744" id="784"/>
                 <outlet property="showstatus" destination="742" id="785"/>
                 <outlet property="showtitle" destination="746" id="788"/>

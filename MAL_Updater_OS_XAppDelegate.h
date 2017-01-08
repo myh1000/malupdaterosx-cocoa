@@ -27,6 +27,7 @@
     IBOutlet NSMenuItem * updatenow;
 	IBOutlet NSMenuItem * confirmupdate;
     IBOutlet NSMenuItem * findtitle;
+    IBOutlet NSMenuItem * showlastscrobbled;
     /* Updated Title Display and Operations */
     IBOutlet NSMenuItem * seperator;
     IBOutlet NSMenuItem * lastupdateheader;
