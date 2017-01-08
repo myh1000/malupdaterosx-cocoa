@@ -14,12 +14,12 @@
 -(BOOL)checkstatus:(NSString *)titleid {
     NSLog(@"Checking Status");
     //Set Search API
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/%@/%@?mine=1",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/2.1/%@/%@?mine=1",MALApiUrl, (DetectedTitleisManga ? @"manga" : @"anime"), titleid]];
     EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
     //Ignore Cookies
     [request setUseCookies:NO];
     //Set Token
-            [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
+    [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
     //Perform Search
     [request startRequest];
     // Get Status Code
@@ -41,7 +41,8 @@
             TotalEpisodes = [(NSNumber *)animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]] intValue];
         }
         // Watch Status
-        if (animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"read_status" : @"watched_status")]] == [NSNull null]) {
+        NSLog(@"%@",animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"read_status" : @"watched_status")]]);
+        if (animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"read_status" : @"watched_status")]] == [NSNull null] || animeinfo[[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"read_status" : @"watched_status")]] == nil) {
             NSLog(@"Not on List");
             LastScrobbledTitleNew = true;
             DetectedCurrentEpisode = 0;
@@ -171,7 +172,7 @@
     //Ignore Cookies
     [request setUseCookies:NO];
     //Set Token
-            [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
+    [request addHeader:[NSString stringWithFormat:@"Basic %@",[self getBase64]]  forKey:@"Authorization"];
     [request addFormData:titleid forKey:[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"manga_id" : @"anime_id")]];
 
     [request addFormData:DetectedEpisode forKey:[NSString stringWithFormat:@"%@", (DetectedTitleisManga ? @"chapters" : @"episodes")]];

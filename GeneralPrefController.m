@@ -138,7 +138,8 @@
 -(IBAction)resetapiurl:(id)sender
 {
 	//Reset Unofficial MAL API URL
-	[APIUrl setStringValue:@"https://malapi.ateliershiori.moe"];
+//	[APIUrl setStringValue:@"https://malapi.ateliershiori.moe"];
+    [APIUrl setStringValue:@"https://pacific-refuge-38710.herokuapp.com"];
 	// Generate API Key
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
 	[defaults setObject:[APIUrl stringValue] forKey:@"MALAPIURL"];
