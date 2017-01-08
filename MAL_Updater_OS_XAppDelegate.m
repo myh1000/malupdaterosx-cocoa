@@ -786,7 +786,6 @@
         [lastupdateheader setTitle:@"Last Scrobbled:"];
         [self setLastScrobbledTitle:[NSString stringWithFormat:@"Last Scrobbled: %@ - %@ %@ playing from %@",[MALEngine getLastScrobbledTitle], [MALEngine getisManga] ? @"Chapter" : @"Episode",[MALEngine getLastScrobbledEpisode], [MALEngine getLastScrobbledSource]]];
         [self setStatusToolTip:[NSString stringWithFormat:@"MAL Updater OS X - %@ - %@",[MALEngine getLastScrobbledActualTitle],[MALEngine getLastScrobbledEpisode]]];
-        [showlastscrobbled setHidden:NO];
     }
 }
 
