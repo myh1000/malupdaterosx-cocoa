@@ -139,7 +139,7 @@
 {
 	//Reset Unofficial MAL API URL
 //	[APIUrl setStringValue:@"https://malapi.ateliershiori.moe"];
-    [APIUrl setStringValue:@"https://atarashii.herokuapp.com"];
+    [APIUrl setStringValue:@"http://same.moe:422"];
 	// Generate API Key
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
 	[defaults setObject:[APIUrl stringValue] forKey:@"MALAPIURL"];
