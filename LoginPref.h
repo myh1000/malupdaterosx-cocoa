@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MASPreferencesViewController.h"
+#import <MASPreferences/MASPreferences.h>
 #import "MAL_Updater_OS_XAppDelegate.h"
 #import "MyAnimeList+Keychain.h"
 
@@ -24,11 +24,10 @@
     IBOutlet NSView * loginview;
     IBOutlet NSView * loggedinview;
     //Reauthorize Panel
-    __unsafe_unretained NSWindow *loginpanel;
     IBOutlet NSTextField * passwordinput;
     IBOutlet NSImageView * invalidinput;
 }
-@property (assign) IBOutlet NSWindow *loginpanel;
+@property (weak) IBOutlet NSWindow *loginpanel;
 - (id)initwithAppDelegate:(MAL_Updater_OS_XAppDelegate *)adelegate;
 -(IBAction)startlogin:(id)sender;
 -(IBAction)clearlogin:(id)sender;

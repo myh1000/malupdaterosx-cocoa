@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MASPreferencesViewController.h"
+#import <MASPreferences/MASPreferences.h>
 
 @interface SoftwareUpdatesPref : NSViewController <MASPreferencesViewController>  {
-
+    IBOutlet NSButton * betacheck;
 }
 @end

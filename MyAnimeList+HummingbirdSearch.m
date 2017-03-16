@@ -8,7 +8,7 @@
 
 #import "MyAnimeList+HummingbirdSearch.h"
 #import "Utility.h"
-#import "EasyNSURLConnection.h"
+#import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 #import "ExceptionsCache.h"
 #import "Recognition.h"
 
@@ -160,7 +160,7 @@
                 }
                 //Return titleid if episode is valid
                 int episodecount;
-                if (searchentry[@"episodeCount"] == [NSNull null]) {
+                if (searchentry[@"episodeCount"] == nil) {
                     // No episode Count, set episode count to zero
                     episodecount = 0;
                 }
@@ -218,7 +218,11 @@
         [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(showType == %@)", @"special"]]];
     }
     else if (DetectedTitleisEpisodeZero){
-        sortedArray = [NSMutableArray arrayWithArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(title CONTAINS %@)" , @"Episode 0"]]];
+        sortedArray = [NSMutableArray arrayWithArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(canonicalTitle CONTAINS %@) AND (showType ==[c] %@)" , @"Episode 0", @"TV"]]];
+        [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(showType == %@)", @"special"]]];
+        [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(showType == %@)", @"OVA"]]];
+        [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(showType == %@)", @"ONA"]]];
+        [sortedArray addObjectsFromArray:[searchdata filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(showType == %@)", @"movie"]]];
     }
     else{
         if (DetectedType.length > 0) {

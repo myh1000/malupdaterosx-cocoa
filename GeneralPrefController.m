@@ -7,7 +7,7 @@
 //
 
 #import "GeneralPrefController.h"
-#import "EasyNSURLConnection.h"
+#import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 #import "MAL_Updater_OS_XAppDelegate.h"
 #import "AutoExceptions.h"
 #import "Utility.h"
@@ -27,7 +27,7 @@
     BOOL isInList = itemRef != nil;
     // Release the reference if it exists.
     if (itemRef != nil) CFRelease(itemRef);
-    
+
     return isInList;
 }
 
@@ -55,7 +55,7 @@
 - (LSSharedFileListItemRef)itemRefInLoginItems {
     LSSharedFileListItemRef itemRef = nil;
     NSURL *itemUrl = nil;
-    
+
     // Get the app's URL.
     NSURL *appUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
     // Get the LoginItems list.
@@ -79,7 +79,7 @@
     // Release the LoginItems lists.
     [loginItems release];
     CFRelease(loginItemsRef);
-    
+
     return itemRef;
 }
 
@@ -110,48 +110,13 @@
     return NSLocalizedString(@"General", @"Toolbar item name for the General preference pane");
 }
 #pragma mark General Preferences Functions
--(IBAction)testapi:(id)sender
-{
-	//Load API URL
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	//Set URL
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/1/animelist/chikorita157", [defaults objectForKey:@"MALAPIURL"]]];
-	EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:url];
-	//Ignore Cookies
-	[request setUseCookies:NO];
-	//Test API
-	[request startRequest];
-	// Get Status Code
-	long statusCode = [request getStatusCode];
-	switch (statusCode) {
-		case 200:
-            [Utility showsheetmessage:@"API Test Successful" explaination:[NSString stringWithFormat:@"HTTP Code: %li", statusCode] window: [[self view] window]];
-			break;
-		default:
-			[Utility showsheetmessage:@"API Test Unsuccessful" explaination:[NSString stringWithFormat:@"HTTP Code: %li", statusCode] window:[[self view] window]];
-			break;
-	}
-	//release
-    [request release];
-	
-}
--(IBAction)resetapiurl:(id)sender
-{
-	//Reset Unofficial MAL API URL
-//	[APIUrl setStringValue:@"https://malapi.ateliershiori.moe"];
-    [APIUrl setStringValue:@"http://same.moe:422"];
-	// Generate API Key
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
-	[defaults setObject:[APIUrl stringValue] forKey:@"MALAPIURL"];
-	
-}
 -(IBAction)clearSearchCache:(id)sender{
     // Remove All cache data from Core Data Entity
     MAL_Updater_OS_XAppDelegate * delegate = (MAL_Updater_OS_XAppDelegate *)[[NSApplication sharedApplication] delegate];
     NSManagedObjectContext *moc = [delegate getObjectContext];
     NSFetchRequest * allCaches = [[NSFetchRequest alloc] init];
     [allCaches setEntity:[NSEntityDescription entityForName:@"Cache" inManagedObjectContext:moc]];
-    
+
     NSError * error = nil;
     NSArray * caches = [moc executeFetchRequest:allCaches error:&error];
     //error handling goes here
@@ -166,7 +131,7 @@
     // Updates Auto Exceptions List
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
+
     dispatch_async(queue, ^{
         // In a queue, download latest Auto Exceptions JSON, disable button until done and show progress wheel
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -181,28 +146,28 @@
         });
         dispatch_release(queue);
     });
-    
+
 }
 -(IBAction)disableAutoExceptions:(id)sender{
     if ([updateexceptionschk state]) {
         [self updateAutoExceptions:sender];
     }
     else{
-    // Clears Exceptions if User chooses
-    // Set Up Prompt Message Window
-    NSAlert * alert = [[NSAlert alloc] init] ;
-    [alert addButtonWithTitle:@"Yes"];
-    [alert addButtonWithTitle:@"No"];
-    [alert setMessageText:@"Do you want to remove all Auto Exceptions Data?"];
-    [alert setInformativeText:@"Since you are disabling Auto Exceptions, you can delete the Auto Exceptions Data. You will be able to download it again."];
-    // Set Message type to Warning
-    [alert setAlertStyle:NSWarningAlertStyle];
-    if ([alert runModal]== NSAlertFirstButtonReturn) {
-        // Remove All cache data from Auto Exceptions
-        [AutoExceptions clearAutoExceptions];
-    }
+        // Clears Exceptions if User chooses
+        // Set Up Prompt Message Window
+        NSAlert * alert = [[NSAlert alloc] init] ;
+        [alert addButtonWithTitle:@"Yes"];
+        [alert addButtonWithTitle:@"No"];
+        [alert setMessageText:@"Do you want to remove all Auto Exceptions Data?"];
+        [alert setInformativeText:@"Since you are disabling Auto Exceptions, you can delete the Auto Exceptions Data. You will be able to download it again."];
+        // Set Message type to Warning
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert beginSheetModalForWindow:[[self view] window] completionHandler:^(NSModalResponse returnCode) {
+                if (returnCode== NSAlertFirstButtonReturn) {
+                    [AutoExceptions clearAutoExceptions];
+                }
+        }];
         [alert release];
     }
-
 }
 @end

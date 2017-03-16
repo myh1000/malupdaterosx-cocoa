@@ -11,6 +11,9 @@
 @class MyAnimeList;
 @class FixSearchDialog;
 @class HistoryWindow;
+@class DonationWindowController;
+@class OfflineViewQueue;
+@class MSWeakTimer;
 @interface MAL_Updater_OS_XAppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSSharingServiceDelegate> {
 	/* Windows */
     __unsafe_unretained NSWindow *window;
@@ -22,7 +25,7 @@
     NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
-	NSTimer * timer;
+    MSWeakTimer * timer;
 	IBOutlet NSMenuItem * togglescrobbler;
     IBOutlet NSMenuItem * updatenow;
 	IBOutlet NSMenuItem * confirmupdate;
@@ -67,6 +70,7 @@
     IBOutlet NSNumberFormatter * epiformatter;
 	NSWindowController *_preferencesWindowController;
 }
+@property (strong, nonatomic) dispatch_queue_t privateQueue;
 @property (nonatomic, readonly) NSWindowController *preferencesWindowController;
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSWindow *updatepanel;
@@ -75,13 +79,15 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property(strong) FixSearchDialog *fsdialog;
 @property (strong) HistoryWindow * historywindowcontroller;
+@property (strong) DonationWindowController * dwindow;
+@property (strong) OfflineViewQueue * owindow;
 
 -(void)showhistory:(id)sender;
 -(IBAction)togglescrobblewindow:(id)sender;
 -(void)setStatusToolTip:(NSString*)toolTip;
 -(IBAction)toggletimer:(id)sender;
 -(void)autostarttimer;
--(void)firetimer:(NSTimer *)aTimer;
+-(void)firetimer;
 -(void)starttimer;
 -(void)stoptimer;
 -(void)setStatusText:(NSString*)messagetext;
@@ -98,6 +104,7 @@
 - (void)appendToAnimeInfo:(NSString*)text;
 -(void)showNotification:(NSString *)title message:(NSString *) message;
 -(IBAction)showAboutWindow:(id)sender;
+-(IBAction)enterDonationKey:(id)sender;
 -(bool)getisScrobbling;
 -(bool)getisScrobblingActive;
 -(NSDictionary *)getNowPlaying;

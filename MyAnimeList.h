@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <OgreKit/OgreKit.h>
 #import "MAL_Updater_OS_XAppDelegate.h"
+#import "Reachability.h"
 
 @interface MyAnimeList : NSObject {
 	NSString * MALApiUrl;
@@ -39,7 +40,10 @@
 	BOOL confirmed;
 	BOOL Success;
     BOOL online;
+    BOOL kodionline;
 	BOOL correcting;
+    Reachability* reach;
+    Reachability* kodireach;
     NSManagedObjectContext *managedObjectContext;
 }
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
@@ -47,6 +51,7 @@
 - (int)startscrobbling;
 -(int)scrobbleagain:(NSString *)showtitle Episode:(NSString *)episode correctonce:(BOOL)correctonce;
 -(int)scrobble;
+-(NSDictionary *)scrobblefromqueue;
 -(BOOL)confirmupdate;
 -(NSString *)getLastScrobbledTitle;
 -(NSString *)getLastScrobbledEpisode;
@@ -63,7 +68,12 @@
 -(BOOL)getSuccess;
 -(BOOL)getisNewTitle;
 -(BOOL)getisManga;
+-(BOOL)getOnlineStatus;
+-(BOOL)getKodiOnlineStatus;
 -(NSDictionary *)getLastScrobbledInfo;
+-(int)getQueueCount;
 -(void)clearAnimeInfo;
 -(NSString *)startSearch;
+-(void)setKodiReach:(BOOL)enable;
+-(void)setKodiReachAddress:(NSString *)url;
 @end

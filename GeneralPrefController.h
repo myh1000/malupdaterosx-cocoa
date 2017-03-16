@@ -7,12 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MASPreferencesViewController.h"
+#import <MASPreferences/MASPreferences.h>
 
 
 @interface GeneralPrefController : NSViewController <MASPreferencesViewController> {
 	//General
-	IBOutlet NSTextField * APIUrl;
     IBOutlet NSButton * disablenewtitlebar;
     IBOutlet NSButton * disablevibarency;
     IBOutlet NSButton * startatlogin;
@@ -20,7 +19,6 @@
     IBOutlet NSButton * updateexceptionsbtn;
     IBOutlet NSButton * updateexceptionschk;
 }
--(IBAction)testapi:(id)sender;
--(IBAction)resetapiurl:(id)sender;
+
 -(IBAction)clearSearchCache:(id)sender;
 @end

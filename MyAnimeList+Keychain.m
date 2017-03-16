@@ -3,11 +3,11 @@
 //  MAL Updater OS X
 //
 //  Created by アナスタシア on 2015/11/26.
-//
+//  Copyright 2009-2016 Atelier Shiori. All rights reserved. Code licensed under New BSD License
 //
 
 #import "MyAnimeList+Keychain.h"
-#import "EasyNSURLConnection.h"
+#import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 #import "Base64Category.h"
 
 @implementation MyAnimeList (Keychain)
